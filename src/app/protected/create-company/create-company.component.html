@@ -1,0 +1,80 @@
+<h3>Set up</h3><br>
+
+<div class="form-restyle create-company-form-container">
+  <div class="row">
+
+    <form [formGroup]="createCompany" novalidate (ngSubmit)="submitForm(createCompany.value)" class="form-horizontal create-company-form">
+      <div class="form-data-container">
+        <h3>Create Company</h3><br>
+        <div class="form-group" style="margin-bottom:6px">
+          <label for="companyName" class="control-label">Company Name</label>
+          <div class="user-input">
+            <input [formControl]="createCompany.controls['companyName']" type="text" id="companyName" class="form-control" required #email placeholder="Company Name">
+            <div style="height:30px" class="text-danger">
+            <span *ngIf="!createCompany.controls['companyName'].pristine
+                  && createCompany.controls['companyName'].hasError('noEmail')
+                  && createCompany.controls['companyName'].value != ''">Invalid email address</span>
+              <span *ngIf="!createCompany.controls['companyName'].pristine
+                  && createCompany.controls['companyName'].hasError('companyName')">Required email address</span>
+            </div>
+          </div>
+          <div class="validation-info">
+            <i class="fa fa-ban checkbox-error"
+               *ngIf="!createCompany.controls['companyName'].pristine
+             && createCompany.controls['companyName'].errors"
+               aria-hidden="true"
+               style="font-size:15px;
+             line-height:2.2">
+            </i>
+            <i class="fa fa-check-square checkbox-ok"
+               *ngIf="!createCompany.controls['companyName'].pristine
+             && !createCompany.controls['companyName'].errors"
+               aria-hidden="true"
+               style="font-size:15px;
+             line-height:2.2"></i>
+          </div>
+        </div>
+
+        <h3>Invite Members</h3><br>
+        <div class="form-group" style="margin-bottom:6px">
+          <label for="email" class="control-label">E-Mail</label>
+          <div class="user-input">
+            <input [formControl]="createCompany.controls['email']" type="email" id="email" class="form-control" required #email placeholder="E-mail">
+            <div style="height:30px" class="text-danger">
+            <span *ngIf="!createCompany.controls['email'].pristine
+                  && createCompany.controls['email'].hasError('noEmail')
+                  && createCompany.controls['email'].value != ''">Invalid email address</span>
+              <span *ngIf="!createCompany.controls['email'].pristine
+                  && createCompany.controls['email'].hasError('required')">Required email address</span>
+            </div>
+          </div>
+          <div class="validation-info">
+            <i class="fa fa-ban checkbox-error"
+               *ngIf="!createCompany.controls['email'].pristine
+             && createCompany.controls['email'].errors"
+               aria-hidden="true"
+               style="font-size:15px;
+             line-height:2.2">
+            </i>
+            <i class="fa fa-check-square checkbox-ok"
+               *ngIf="!createCompany.controls['email'].pristine
+             && !createCompany.controls['email'].errors"
+               aria-hidden="true"
+               style="font-size:15px;
+             line-height:2.2"></i>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="custom-message" class="control-label">Custom Message:</label><br><br>
+          <div class="user-text">
+            <textarea class="form-control" rows="5" id="custom-message"></textarea>
+          </div>
+          </div>
+        <div class="col-md-12 text-center">
+          <button type="submit" [disabled]="!createCompany.valid" class="btn btn-primary center-text">Create Account</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

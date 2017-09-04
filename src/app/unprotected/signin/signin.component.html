@@ -1,0 +1,40 @@
+<h3>Sign in</h3><br>
+
+<div class="form-restyle signin-form-container">
+  <div class="row">
+    <form class="form-horizontal signin-form">
+      <div class="form-data-container">
+        <div class="form-group" style="margin-bottom:30px">
+          <label for="email" class="control-label">E-Mail</label>
+          <div class="user-input">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              [(ngModel)]="user.email"
+              class="form-control" #email>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:30px">
+          <label for="password" class="control-label">Password</label>
+          <div class="user-input">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              [(ngModel)]="user.password"
+              class="form-control">
+          </div>
+        </div>
+        <div class="form-group text-center">
+          <button type="submit" [disabled]="invalid(user.email, user.password) || isNotEmail(user.email)"
+                  (click)="onSignin('my', user)" class="btn btn-primary">Log-In
+          </button>
+          <br>
+        </div>
+        <!--<div class="form-group"><button type="button" (click)="onSignin('facebook')" class="btn btn-primary">Sign In With Facebook</button>-->
+        <!--<button type="button" (click)="onSignin('google')" class="btn btn-primary">Sign In With Google</button></div>-->
+      </div>
+    </form>
+  </div>
+</div>

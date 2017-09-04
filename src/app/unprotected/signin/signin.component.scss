@@ -1,0 +1,42 @@
+@import '../../app.component.scss';
+.content-row {
+@include make-row();
+}
+
+
+.signin-form {
+@include make-md-column(11);
+@extend .col-centered;
+}
+
+.signin-form-container {
+@include make-md-column(8);
+@include make-md-column-offset(2);
+}
+
+
+.signin-form .form-data-container  {
+  $grid-columns: 8 !global;
+
+//.control-label {
+  //  @include make-md-column(3);
+  //  @include make-xs-column(11);
+  //}
+
+@include make-xs-column(8);
+.control-label {
+@include make-md-column( 2 );
+@include make-xs-column( 8 );
+}
+.user-input {
+@include make-md-column(3);
+@include make-xs-column(8);
+}
+.validation-info {
+@include make-md-column(3);
+@extend .hidden-sm;
+@extend .hidden-xs;
+
+}
+$grid-columns: 12 !global;
+}

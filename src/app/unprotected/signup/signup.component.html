@@ -1,0 +1,102 @@
+<h3>Sign Up</h3><br>
+
+<div class="form-restyle signup-form-container">
+  <div class="row">
+    <form [formGroup]="signupForm" novalidate (ngSubmit)="submitForm(signupForm.value)" class="form-horizontal signup-form">
+      <div class="form-data-container">
+      <div class="form-group" style="margin-bottom:6px">
+        <label for="email" class="control-label">E-Mail</label>
+        <div class="user-input">
+          <input [formControl]="signupForm.controls['email']" type="email" id="email" class="form-control" required #email placeholder="E-mail">
+          <div style="height:30px" class="text-danger">
+            <span *ngIf="!signupForm.controls['email'].pristine
+                  && signupForm.controls['email'].hasError('noEmail')
+                  && signupForm.controls['email'].value != ''">Invalid email address</span>
+            <span *ngIf="!signupForm.controls['email'].pristine
+                  && signupForm.controls['email'].hasError('required')">Required email address</span>
+          </div>
+        </div>
+        <div class="validation-info">
+          <i class="fa fa-ban checkbox-error"
+             *ngIf="!signupForm.controls['email'].pristine
+             && signupForm.controls['email'].errors"
+             aria-hidden="true"
+             style="font-size:15px;
+             line-height:2.2">
+          </i>
+          <i class="fa fa-check-square checkbox-ok"
+             *ngIf="!signupForm.controls['email'].pristine
+             && !signupForm.controls['email'].errors"
+             aria-hidden="true"
+             style="font-size:15px;
+             line-height:2.2"></i>
+        </div>
+
+
+      </div>
+      <div class="form-group">
+        <label for="password" class="control-label">Password</label>
+        <div class="user-input">
+          <input [formControl]="signupForm.controls['password']" type="password" id="password" class="form-control" #password
+                 (input)="passwordStrengthCalculator($event, signupForm.controls['password'].value); resetConfirmPassword(signupForm.controls['password'].value, signupForm.controls['confirmPassword'])" required placeholder="Password">
+          <div class="text-danger" style="height:30px;">
+            <span *ngIf="!signupForm.controls['password'].pristine
+                  && signupForm.controls['password'].hasError('missingUpperCase')
+                  && signupForm.controls['password'].value != null">Requirement: at least one uppercase character</span>
+            <span *ngIf="!signupForm.controls['password'].pristine
+                  && signupForm.controls['password'].hasError('missingLowerCase')
+                  &&   signupForm.controls['password'].value != null">Requirement: at least one lowercase character</span>
+            <span *ngIf="!signupForm.controls['password'].pristine
+                  && signupForm.controls['password'].hasError('missingDigit')
+                  && signupForm.controls['password'].value != null">Insert at least one digit</span>
+            <span *ngIf="!signupForm.controls['password'].pristine
+              && signupForm.controls['password'].hasError('tooShortPassword')
+              && signupForm.controls['password'].value != null">Requirement: at least 6 characters</span>
+          </div>
+        </div>
+        <div class="validation-info">
+          <p style="margin-bottom:0; line-height:1">Password strength</p>
+           <ul class="password-strength-histogram">
+             <li>
+             </li>
+             <ul class="password-strength-histogram-triangle" style="position:relative">
+               <li [hidden]="passwordStrength =='medium' || passwordStrength == 'strong'"></li>
+               <li [hidden]="passwordStrength =='weak' || passwordStrength =='strong'"></li>
+               <li [hidden]="passwordStrength =='weak' || passwordStrength =='medium'"></li>
+             </ul>
+             <ul class="password-strength-histogram-colored">
+               <li class="bgcolor-red"></li>
+               <li style="background-color:yellow"></li>
+               <li class="bgcolor-green"></li>
+             </ul>
+           </ul>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password" class="control-label">Retype Password</label>
+        <div class="user-input">
+          <input [formControl]="signupForm.controls['confirmPassword']" required type="password" id="confirm-password" (input)="resetConfirmPassword(signupForm.controls['password'].value, signupForm.controls['confirmPassword'])" class="form-control" placeholder="Confirm password">
+          <div class="text-danger" style="height:30px">
+            <span *ngIf="!signupForm.controls['confirmPassword'].pristine
+                  && signupForm.controls['confirmPassword'].value != null
+                  && signupForm.controls['confirmPassword'].hasError('passwordsNotMatch')">Passwords do not match</span>
+          </div>
+        </div>
+        <div class="validation-info">
+          <i class="fa fa-ban checkbox-error"
+             *ngIf="!signupForm.controls['confirmPassword'].pristine
+             && signupForm.controls['confirmPassword'].errors" aria-hidden="true" style="font-size:15px; line-height:2.2"></i>
+          <i class="fa fa-check-square checkbox-ok"
+             *ngIf="!signupForm.controls['confirmPassword'].pristine
+             && !signupForm.controls['confirmPassword'].errors" aria-hidden="true" style="font-size:15px; line-height:2.2"></i>
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <button type="submit" [disabled]="!signupForm.valid" class="btn btn-primary center-text">Create Account</button>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
+

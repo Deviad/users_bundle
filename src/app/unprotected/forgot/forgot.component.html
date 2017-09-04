@@ -1,0 +1,30 @@
+<h3>Forgot Password</h3><br>
+<div class="form-restyle forgot-form-container">
+  <div class="row">
+    <form class="form-horizontal forgot-form">
+      <div class="form-data-container">
+        <div class="form-group" style="margin-bottom:30px">
+          <label for="email" class="control-label">E-Mail</label>
+          <div class="user-input">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              [(ngModel)]="email"
+              class="form-control">
+          </div>
+        </div>
+        <div class="form-group text-center">
+          <button type="submit" [disabled]="isNotEmail(email)"
+                  (click)="sendPassword(email)" class="btn btn-primary">Log-In
+          </button>
+          <br>
+        </div>
+        <!--<div class="form-group"><button type="button" (click)="onforgot('facebook')" class="btn btn-primary">Sign In With Facebook</button>-->
+        <!--<button type="button" (click)="onforgot('google')" class="btn btn-primary">Sign In With Google</button></div>-->
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-small-modal *ngIf="viewMyModal" (viewModal)="ngOnChanges($event)" [title]="title" [message]="message"></app-small-modal>

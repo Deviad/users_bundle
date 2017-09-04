@@ -1,0 +1,104 @@
+@import '../../app.component.scss';
+.content-row {
+  @include make-row();
+}
+
+
+.signup-form {
+  @include make-md-column(11);
+  @extend .col-centered;
+}
+
+.signup-form-container {
+  @include make-md-column(8);
+  @include make-md-column-offset(2);
+}
+
+
+.signup-form .form-data-container  {
+  $grid-columns: 8 !global;
+
+  //.control-label {
+  //  @include make-md-column(3);
+  //  @include make-xs-column(11);
+  //}
+
+  @include make-xs-column(8);
+  .control-label {
+    @include make-md-column( 2 );
+    @include make-xs-column( 8 );
+  }
+  .user-input {
+    @include make-md-column(3);
+    @include make-xs-column(8);
+  }
+  .validation-info {
+    @include make-md-column(3);
+    @extend .hidden-sm;
+    @extend .hidden-xs;
+
+  }
+  $grid-columns: 12 !global;
+}
+
+
+
+.password-strength-histogram {
+  padding: 0;
+  margin-bottom:0;
+}
+
+.password-strength-histogram > li:first-child {
+  height:2px;
+  background-color:black;
+  width:100%;
+  display:inline-block;
+}
+
+.password-strength-histogram-colored {
+  $grid-columns: 3 !global;
+  padding-left: 0;
+  padding-right:0;
+  & > li {
+    @include make-md-column(1);
+    list-style-type: none;
+    height: 10px;
+    margin-top: 10px;
+  }
+
+  $grid-columns: 12 !global;
+}
+
+
+
+.password-strength-histogram-triangle > li {
+  display:inline-block;
+  height:10px;
+  padding: 0;
+  width:10px;
+  background:transparent;
+  list-style: none;
+  position:absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid black;
+  top:0;
+}
+
+
+.password-strength-histogram-triangle > li:first-child {
+  top:-10px;
+  left:11%;
+}
+
+.password-strength-histogram-triangle> li:nth-child(2) {
+  top:-10px;
+  left:44%;
+}
+
+.password-strength-histogram-triangle > li:nth-child(3) {
+  top:-10px;
+  left:76%;
+}
+
+

@@ -1,0 +1,13 @@
+import { InjectionToken } from "@angular/core";
+import { IAppConfig } from './app-config.interface';
+const APP_CONFIG = new InjectionToken("app.config");
+
+
+
+const AppConfig: IAppConfig = {
+  apiEndpoint: window.location.hostname == 'localhost' || window.location.hostname == 'localhostname.dev' ? `http://0.0.0.0:5000` : `http://api.yourhostname`
+  // apiEndpoint:`http://0.0.0.0:5000`
+
+};
+
+export {AppConfig, APP_CONFIG };
